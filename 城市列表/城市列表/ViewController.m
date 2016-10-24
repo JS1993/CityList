@@ -193,7 +193,7 @@
         }
     }
     
-    //双重遍历，在街道数组中寻找对应的市 model，并且将街道元素添加到区元素的子数组中
+    //双重遍历，在街道数组中寻找对应的区 model，并且将街道元素添加到区元素的子数组中
     for (CityModel* disModel in self.js_district) {
         for (CityModel* streetModel in self.js_street) {
             if ([disModel.ID isEqualToString:streetModel.parentId]) {
@@ -243,12 +243,12 @@
     static NSInteger threeRow = 0;
     if (component == 0) {
         self.selectOneRow = row;
-        [self getCitydate:row];
+        self.selectTwoRow = 0;
+        self.selectThreeRow = 0;
         //重新加载 第二列
         [pickerView reloadComponent:1];
         //默认选中第一列中的第一个数据
         [pickerView selectRow:0 inComponent:1 animated:YES];
-        [self getAreaDate:0];
         [pickerView reloadComponent:2];
         [pickerView selectRow:0 inComponent:2 animated:YES];
         oneRow = row;
@@ -257,9 +257,8 @@
     }
     
     if (component == 1){
-        
         self.selectTwoRow = row;
-        [self getAreaDate:row];
+        self.selectThreeRow = 0;
         [pickerView reloadComponent:2];
         [pickerView selectRow:0 inComponent:2 animated:YES];
         
